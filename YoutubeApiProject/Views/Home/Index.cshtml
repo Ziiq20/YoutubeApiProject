@@ -1,0 +1,336 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Inline CSS -->
+    <style>
+
+        body {
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333; /* Dark text color for readability */
+        }
+
+        /* Set the size for all category and artist images */
+        .fixed-size-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px; /* Rounded corners for genres */
+            transition: transform 0.3s; /* Add a transition for hover effect */
+        }
+
+        .fixed-size-artist {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%; /* Circular artist images */
+            transition: transform 0.3s; /* Add a transition for hover effect */
+        }
+
+        /* Style for explore genres section */
+        .explore-genres {
+            text-align: center; /* Center text inside the div */
+            margin: 40px 0; /* Space above and below */
+        }
+
+            .explore-genres h2 {
+                margin-bottom: 30px; /* Space below the title */
+                font-size: 2rem; /* Font size for the title */
+                font-weight: 700; /* Bold font for the title */
+            }
+
+        .genre-card {
+            border: 1px solid #dee2e6; /* Light border around the card */
+            border-radius: 10px; /* Rounded corners for the card */
+            padding: 15px; /* Padding inside the card */
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+            .genre-card:hover {
+                transform: scale(1.05); /* Slightly enlarge on hover */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+            }
+
+        .genre-img {
+            margin-bottom: 10px; /* Space below the image */
+        }
+
+        .genre-card a {
+            color: black; /* Set link color to black */
+            text-decoration: none; /* Optional: Remove underline from links */
+        }
+
+            .genre-card a:hover {
+                text-decoration: underline; /* Optional: Add underline on hover */
+            }
+
+
+        /* Style for featured artists section */
+        .featured-artists {
+            text-align: center; /* Center text inside the div */
+            margin: 40px 0; /* Space above and below */
+        }
+
+            .featured-artists h2 {
+                margin-bottom: 30px; /* Space below the title */
+                font-size: 2rem; /* Font size for the title */
+                font-weight: 700; /* Bold font for the title */
+            }
+
+        .artist-card {
+            border: 1px solid #dee2e6; /* Light border around the artist card */
+            border-radius: 10px; /* Rounded corners for the card */
+            padding: 15px; /* Padding inside the card */
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+            .artist-card:hover {
+                transform: scale(1.05); /* Slightly enlarge on hover */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+            }
+
+            .artist-card a {
+                color: black; /* Set link color to black */
+                text-decoration: none; /* Optional: Remove underline from links */
+            }
+
+            .artist-card:hover {
+                text-decoration: underline; /* Optional: Add underline on hover */
+            }
+
+        /* Style for Features section */
+        .features-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 40px;
+            background-color: #ffffff; /* White background for contrast */
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+        }
+
+            .features-section h2 {
+                margin-bottom: 30px;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #007bff; /* Highlighted color */
+            }
+
+        .feature-card {
+            margin-bottom: 30px;
+        }
+
+            .feature-card h5 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #333;
+            }
+
+            .feature-card p {
+                font-size: 1rem;
+                color: #555;
+                margin: 10px 0;
+            }
+
+        /* Feature Icons */
+        .feature-icon {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        /* Trending Now Section */
+        .trending-now {
+            text-align: center;
+            margin: 40px 0; /* Space above and below */
+        }
+
+            .trending-now h2 {
+                margin-bottom: 30px; /* Space below the title */
+                font-size: 2rem; /* Font size for the title */
+                font-weight: 700; /* Bold font for the title */
+            }
+
+        .trending-card {
+            border: 1px solid #dee2e6; /* Light border around the card */
+            border-radius: 10px; /* Rounded corners for the card */
+            padding: 15px; /* Padding inside the card */
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+            .trending-card:hover {
+                transform: scale(1.05); /* Slightly enlarge on hover */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+            }
+
+        .trending-img {
+            margin-bottom: 10px; /* Space below the image */
+            border-radius: 10px; /* Optional: Rounded corners */
+        }
+
+        .trending-card a {
+            color: black; /* Set link color to black */
+            text-decoration: none; /* Optional: Remove underline from links */
+        }
+
+            .trending-card a:hover {
+                text-decoration: underline; /* Optional: Add underline on hover */
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Jumbotron Section -->
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to Music Website!</h1>
+        <hr class="my-4">
+    </div>
+
+    <!-- Music Categories -->
+    <div class="container my-5 explore-genres">
+        <h2>Explore Genres</h2>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="genre-card">
+                    <a href="/Youtube">
+                        <img src="images/pop genre.jpg" class="img-fluid fixed-size-img genre-img" alt="Pop Genre">
+                        <h5 class="mt-2">Pop</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="genre-card">
+                    <a href="/Youtube">
+                        <img src="images/rock.jpg" class="img-fluid fixed-size-img genre-img" alt="Rock Genre">
+                        <h5 class="mt-2">Rock</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="genre-card">
+                    <a href="/Youtube">
+                        <img src="images/hiphop.jpg" class="img-fluid fixed-size-img genre-img" alt="Hip-Hop Genre">
+                        <h5 class="mt-2">Hip-Hop</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="genre-card">
+                    <a href="/Youtube">
+                        <img src="images/jazz.jpg" class="img-fluid fixed-size-img genre-img" alt="Jazz Genre">
+                        <h5 class="mt-2">Jazz</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trending Now Section -->
+    <div class="container my-5 trending-now">
+        <h2 class="text-center">Trending Now</h2>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="trending-card">
+                    <a href="/Youtube">
+                        <img src="~/images/song 1.jpg" class="img-fluid fixed-size-img trending-img" alt="Trending Song 1">
+                        <h5 class="mt-2">Passenger | Let Her Go</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="trending-card">
+                    <a href="/Youtube">
+                        <img src="~/images/song 2.jpg" class="img-fluid fixed-size-img trending-img" alt="Trending Song 2">
+                        <h5 class="mt-2">Perfect - Ed Sheeran</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="trending-card">
+                    <a href="/Youtube">
+                        <img src="~/images/song 3.jpg" class="img-fluid fixed-size-img trending-img" alt="Trending Song 3">
+                        <h5 class="mt-2">Drunk text - Henry Moodie</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="trending-card">
+                    <a href="/Youtube">
+                        <img src="~/images/song 4.jpg" class="img-fluid fixed-size-img trending-img" alt="Trending Song 4">
+                        <h5 class="mt-2">Cash Cash - Hero</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Featured Artists Section -->
+    <div class="container my-5 featured-artists">
+        <h2>Featured Artists</h2>
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="artist-card">
+                    <a href="/Youtube">
+                        <img src="images/artis1.jpg" class="img-fluid fixed-size-artist" alt="Artist 1">
+                        <h5 class="mt-2">Siti Norhaliza</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="artist-card">
+                    <a href="/Youtube">
+                        <img src="images/artis 2.jpg" class="img-fluid fixed-size-artist" alt="Artist 2">
+                        <h5 class="mt-2">Shilla Amzah</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="artist-card">
+                    <a href="/Youtube">
+                        <img src="images/artis 3.jpg" class="img-fluid fixed-size-artist" alt="Artist 3">
+                        <h5 class="mt-2">Fattah Amin</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Features Section -->
+    <div class="container features-section">
+        <h2>Features</h2>
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mb-4 feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-music"></i> <!-- FontAwesome icon -->
+                </div>
+                <h5>Vast Music Library</h5>
+                <p>Discover millions of songs across various genres, from pop to jazz, rock to hip-hop, and more.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i> <!-- FontAwesome icon -->
+                </div>
+                <h5>Advanced Search</h5>
+                <p>Find your favorite tracks quickly and easily with our powerful search engine.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i> <!-- FontAwesome icon -->
+                </div>
+                <h5>Curated Playlists</h5>
+                <p>Enjoy expertly curated playlists for every mood, occasion, and genre preference.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
